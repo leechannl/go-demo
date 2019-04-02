@@ -1,12 +1,14 @@
 package main
 
+import _ "fmt"
 import "github.com/jinzhu/gorm"
+import "github.com/davecgh/go-spew/spew"
 import _ "github.com/jinzhu/gorm/dialects/sqlite"
 
 // Product demo model
 type Product struct {
 	gorm.Model
-	Code  string
+	Code  string `gorm:"type:varchar(100)"`
 	Price uint
 }
 
@@ -22,7 +24,8 @@ func main() {
 	db.Create(&Product{Code: "L1213", Price: 2500})
 
 	var product Product
-	db.First(&product, 1)
+	db.First(&product)
+	spew.Dump(&product)
 	db.First(&product, "code = ?", "L1213")
 
 	db.Model(&product).Update("Price", 2640)
