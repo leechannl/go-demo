@@ -3,6 +3,7 @@ package main
 import "github.com/jinzhu/gorm"
 import _ "github.com/jinzhu/gorm/dialects/sqlite"
 
+// Product demo model
 type Product struct {
 	gorm.Model
 	Code  string
